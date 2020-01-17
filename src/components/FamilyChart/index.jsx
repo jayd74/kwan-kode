@@ -10,19 +10,11 @@ import "firebase/auth";
 import "firebase/firestore";
 import "firebase/database";
 
+import { firebaseConfig } from '../../config/firebase'
 import { get, map } from 'lodash'
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCIOqrvNf3TKk8y4EVonfMBxA31ib-OWFE",
-  authDomain: "kwan-kode.firebaseapp.com",
-  databaseURL: "https://kwan-kode.firebaseio.com",
-  projectId: "kwan-kode",
-  storageBucket: "kwan-kode.appspot.com",
-  messagingSenderId: "444898478883",
-  appId: "1:444898478883:web:300d4e040bec6559e85a96",
-  measurementId: "G-PCYZESK5LQ"
-};
-firebase.initializeApp(firebaseConfig)
+const config = firebaseConfig
+firebase.initializeApp(config)
 
 class FamilyChart extends Component {
   constructor(){
