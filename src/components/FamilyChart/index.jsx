@@ -28,7 +28,7 @@ class FamilyChart extends Component {
     const dbref = firebase.database().ref('/13EYRiCF6kz79_PKvpSoFV706o7NMC9FbEqSvtC5zKYI/')
     dbref.on('value', (snapshot) => {
       const data = snapshot.val();
-      const getData = get(data, 'Sheet1')
+      const getData = get(data, 'sheet')
       this.setState({
         familyData: getData
       })
