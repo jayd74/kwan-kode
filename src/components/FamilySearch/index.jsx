@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import AppBar from '@material-ui/core/AppBar';
@@ -6,20 +6,30 @@ import AppBar from '@material-ui/core/AppBar';
 import { media } from '../../helpers/media'
 import MemberRow from './MemberRow';
 import SearchBar from '../SearchBar';
+import Profile from './Profile';
 
 const FamilySearch = ({ data }) => {
   const [results, setResults] = useState([])
+  const [person, setPerson] = useState([])
+  const [showResults, setShowResults] = useState(false)
 
-  return <div>
+  useEffect(() => {
+    results.length > 0 ? setShowResults(true) : setShowResults(false)
+  }, [results])
+
+  return <>
     <AppBar>
       <SearchContainer>
         <SearchBar setResults={setResults} data={data} />
-        <SearchResults>
-          <MemberRow familyData={results} />
-        </SearchResults>
+        {showResults ?
+          <SearchResults showResults={showResults}>
+            <MemberRow familyData={results} person={person} setPerson={setPerson} setShowResults={setShowResults}/>
+          </SearchResults>
+        : null }
       </SearchContainer>
     </AppBar>
-  </div>
+    <Profile person={person} setPerson={setPerson} />
+  </>
 }
 
 export default FamilySearch

@@ -2,10 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { map, replace } from 'lodash'
 
-const MemberRow = ({familyData, className}) => {
+const MemberRow = ({ familyData, className, setPerson, setShowResults }) => {
 
-  const handleClick = event => {
-    console.log(event)
+  const showPerson = id => {
+    setPerson(id)
+    setShowResults(false)
   }
 
   const formatID = (id) => {
@@ -15,7 +16,7 @@ const MemberRow = ({familyData, className}) => {
   }
 
   return map(familyData, member => {
-    return <div className={className} key={member.id} onClick={handleClick}>{formatID(member.id)}  {member.name}</div>
+    return <div className={className} key={member.id} onClick={() => showPerson(member)}>{formatID(member.id)}  {member.name}</div>
   })
 }
 

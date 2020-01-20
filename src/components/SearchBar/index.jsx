@@ -28,7 +28,7 @@ const SearchBar = ({ setResults, data, className }) => {
   return (
     <TextField
       id="standard-search"
-      label="Search"
+      label="Enter name or code"
       variant="filled"
       type="search"
       margin="normal"
