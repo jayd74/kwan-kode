@@ -28,7 +28,7 @@ const FamilySearch = ({ data }) => {
         : null }
       </SearchContainer>
     </AppBar>
-    <Profile person={person} setPerson={setPerson} />
+    <Profile person={person} setPerson={setPerson} familyData={data}/>
   </>
 }
 

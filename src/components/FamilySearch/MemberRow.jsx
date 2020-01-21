@@ -1,18 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import { map, replace } from 'lodash'
+import { map } from 'lodash'
+import { formatID } from '../../helpers/helpers'
 
 const MemberRow = ({ familyData, className, setPerson, setShowResults }) => {
 
   const showPerson = id => {
     setPerson(id)
     setShowResults(false)
-  }
-
-  const formatID = (id) => {
-    const newID = replace(id, /_/g, '-')
-
-    return newID
   }
 
   return map(familyData, member => {

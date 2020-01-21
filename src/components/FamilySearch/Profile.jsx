@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Profile = ({ person, className }) => {
+import Family from './Family'
+
+const Profile = ({ person, familyData, className }) => {
+
   return person.id ? <div className={className}>
     <Info>
       <p><span>ID: </span>{person.id}</p>
@@ -9,6 +12,7 @@ const Profile = ({ person, className }) => {
     <Info>
       <p><span>Name: </span>{person.name}</p>
     </Info>
+    <Family id={person.id} familyData={familyData}/>
   </div>
   : null
 }
