@@ -1,27 +1,31 @@
 import React from 'react'
-import { getPrimary, isSpouse, getSecondary, findPerson } from '../../helpers/helpers'
+import { getPrimaryID, isSpouse, getSecondaryID, findPerson } from '../../helpers/helpers'
 
 const Family = ({ id, familyData}) => {
   let family = []
+  const primaryID = getPrimaryID(id)
+  const primary = findPerson(familyData, primaryID)
+  const secondaryID = getSecondaryID(id)
+  const secondary = findPerson(familyData, secondaryID)
 
   if (isSpouse(id)) {
-    const primaryID = getPrimary(id)
-    const primary = findPerson(familyData, primaryID)
-    family.push({...primary, relation: 'Spouse'})
+    family.push({...primary, relation: 'spouse'})
   } else {
-    const secondaryID = getSecondary(id)
-    const secondary = findPerson(familyData, secondaryID)
-    family.push({ ...secondary, relation: 'Spouse' })
+    if (secondary) {
+      family.push({ ...secondary, relation: 'spouse' }, {...primary, relation: 'child'})
+    } else {
+      family.push({ ...primary, relation: 'child'})
+    }
   }
 
-  return <div>
+  return <>
     Family members:
     {family.map(member => {
       return <div key={member.id}>
-        {member.name}, Relation: {member.relation}
+        {member.relation} of {member.name}
       </div>
     })}
-  </div>
+  </>
 }
 
 export default Family
