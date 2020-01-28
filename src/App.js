@@ -8,6 +8,7 @@ import { firebaseConfig } from './config/firebase'
 
 import FamilySearch from './components/FamilySearch';
 import { formatID } from './helpers/helpers'
+import FamilyTree from './components/FamilyTree';
 
 const config = firebaseConfig
 firebase.initializeApp(config)
@@ -36,9 +37,10 @@ const App = () => {
     })
   })
 
-  return (
+  return <>
     <FamilySearch data={formattedData} />
-  );
+    <FamilyTree data={formattedData}/>
+  </>
 }
 
 export default App;

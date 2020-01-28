@@ -38,3 +38,18 @@ export const getSiblingIDs = id => {
 
   return siblingIDs
 }
+
+
+export const makeTreeData = data => {
+  let treeData = []
+
+  for (let i = 0; i < data.length; i++) {
+    treeData.push({
+      id: data[i].id,
+      title: data[i].name,
+      ParentId: getPrimaryID(data[i].id) || null
+    })
+  }
+
+  return treeData
+}
