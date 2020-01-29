@@ -6,9 +6,8 @@ import "firebase/analytics";
 import "firebase/database";
 import { firebaseConfig } from './config/firebase'
 
-import FamilySearch from './components/FamilySearch';
 import { formatID } from './helpers/helpers'
-import FamilyTree from './components/FamilyTree';
+import KwanKode from './components/KwanKode';
 
 const config = firebaseConfig
 firebase.initializeApp(config)
@@ -38,8 +37,7 @@ const App = () => {
   })
 
   return <>
-    <FamilySearch data={formattedData} />
-    <FamilyTree data={formattedData}/>
+    <KwanKode data={formattedData} />
   </>
 }
 

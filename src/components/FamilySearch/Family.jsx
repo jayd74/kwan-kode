@@ -29,14 +29,14 @@ const Family = ({ id, familyData}) => {
         <p>Siblings: </p>
         {siblings.map(sibling => {
           const sib = get(sibling, '[0]')
-          return <p>{sib.name}</p>
+          return <p key={sib.id}>{sib.name}</p>
         })}
       </> : null
       const showChildren = children ? <>
         <p>Children: </p>
         {children.map(sibling => {
           const sib = get(sibling, '[0]')
-          return <p>{sib.name}</p>
+          return <p key={sib.id}>{sib.name}</p>
         })}
       </> : null
 

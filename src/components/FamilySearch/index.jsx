@@ -8,7 +8,7 @@ import MemberRow from './MemberRow';
 import SearchBar from '../SearchBar';
 import Profile from './Profile';
 
-const FamilySearch = ({ data }) => {
+const FamilySearch = ({ data, setPage }) => {
   const [results, setResults] = useState([])
   const [person, setPerson] = useState([])
   const [showResults, setShowResults] = useState(false)
@@ -26,6 +26,7 @@ const FamilySearch = ({ data }) => {
             <MemberRow familyData={results} person={person} setPerson={setPerson} setShowResults={setShowResults}/>
           </SearchResults>
         : null }
+      <TreeLink onClick={() => setPage('tree')}>Tree</TreeLink>
       </SearchContainer>
     </AppBar>
     <Profile person={person} setPerson={setPerson} familyData={data}/>
@@ -53,7 +54,18 @@ const SearchResults = styled.div`
 `
 
 const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
   margin: 0 auto;
   width: 100%;
   max-width: 500px;
+`
+
+const TreeLink = styled.div`
+  margin-left: 20px;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `
