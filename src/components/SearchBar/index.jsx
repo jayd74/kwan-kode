@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import TextField from '@material-ui/core/TextField';
 import { filter, includes } from 'lodash'
-import { removeDash } from '../../helpers/helpers'
+import { removeDash, formatSearch } from '../../helpers/helpers'
 
 const SearchBar = ({ setResults, data, className }) => {
 
@@ -12,12 +12,13 @@ const SearchBar = ({ setResults, data, className }) => {
     const input = event.target.value.toLowerCase()
 
     // Remove the dash from input so that users can search with or without the '-'
-    const searchParams = removeDash(input)
+    const searchParams = formatSearch(input)
     if (searchParams) {
       const results = filter(data, result => {
+        const keywords = result.keywords
         const name = result["name"].toLowerCase()
         const number = removeDash(result["id"])
-        return includes(name, searchParams) || includes(number, searchParams)
+        return includes(keywords, searchParams) || includes(number, searchParams)
       })
       setResults(results)
     } else {

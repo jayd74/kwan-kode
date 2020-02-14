@@ -6,7 +6,7 @@ import "firebase/analytics";
 import "firebase/database";
 import { firebaseConfig } from './config/firebase'
 
-import { formatID } from './helpers/helpers'
+import { formatID, formatSearch } from './helpers/helpers'
 import KwanKode from './components/KwanKode';
 
 const config = firebaseConfig
@@ -27,12 +27,14 @@ const App = () => {
   let formattedData = []
   forEach(familyData, person => {
     const { id, name, yearBorn, yearLeft } = person
+    const keywords = formatSearch(name).toLowerCase().split(' ')
     const newID = formatID(id)
     formattedData.push({
       id: newID,
       name,
       yearBorn,
-      yearLeft
+      yearLeft,
+      keywords
     })
   })
 

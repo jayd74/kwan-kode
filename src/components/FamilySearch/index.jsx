@@ -19,6 +19,7 @@ const FamilySearch = ({ data, setPage }) => {
 
   return <>
     <AppBar>
+      <TreeLink onClick={() => setPage('tree')}>Tree</TreeLink>
       <SearchContainer>
         <SearchBar setResults={setResults} data={data} />
         {showResults ?
@@ -26,7 +27,6 @@ const FamilySearch = ({ data, setPage }) => {
             <MemberRow familyData={results} person={person} setPerson={setPerson} setShowResults={setShowResults}/>
           </SearchResults>
         : null }
-      <TreeLink onClick={() => setPage('tree')}>Tree</TreeLink>
       </SearchContainer>
     </AppBar>
     <Profile person={person} setPerson={setPerson} familyData={data}/>

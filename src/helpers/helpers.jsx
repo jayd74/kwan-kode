@@ -9,6 +9,8 @@ export const getSecondaryID = id => id.concat('-S')
 export const isSpouse = id => includes(id.toLowerCase(), 's')
 export const findPerson = (data, id) => find(data, person => person.id === id)
 
+export const formatSearch = string => replace(string, /[()-./]/g, '')
+
 export const getSiblings = (data, siblingIDs) => {
   const allOffspring = map(siblingIDs, person => {
     const siblingsArray = filter(data, sibling => {
