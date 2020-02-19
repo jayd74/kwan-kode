@@ -25,6 +25,7 @@ const Family = ({ id, familyData}) => {
     Family members:
     {family.map(member => {
       const { id, relation, name, siblings, children } = member
+
       const showSiblings = siblings ? <>
         <p>Siblings: </p>
         {siblings.map(sibling => {
@@ -32,6 +33,7 @@ const Family = ({ id, familyData}) => {
           return <p key={sib.id}>{sib.name}</p>
         })}
       </> : null
+
       const showChildren = children ? <>
         <p>Children: </p>
         {children.map(sibling => {
@@ -39,7 +41,6 @@ const Family = ({ id, familyData}) => {
           return <p key={sib.id}>{sib.name}</p>
         })}
       </> : null
-
 
       return <div key={id}>
         {relation} of {name}
