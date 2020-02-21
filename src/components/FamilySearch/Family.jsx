@@ -22,13 +22,14 @@ const Family = ({ id, familyData}) => {
   }
 
   return <>
-    Family members:
+    <h4>Family members:</h4>
     {family.map(member => {
       const { id, relation, name, siblings, children } = member
       const hasSiblings = !isEmpty(siblings)
       const hasChildren = !isEmpty(children)
 
       const siblingsList = hasSiblings ? <>
+        <h4>Siblings: </h4>
         {siblings.map(sibling => {
           const sib = get(sibling, '[0]')
           return <p key={sib.id}>{sib.name}</p>
@@ -36,6 +37,7 @@ const Family = ({ id, familyData}) => {
       </> : null
 
       const childrenList = hasChildren ? <>
+        <h4>Children: </h4>
         {children.map(sibling => {
           const sib = get(sibling, '[0]')
           return <p key={sib.id}>{sib.name}</p>
