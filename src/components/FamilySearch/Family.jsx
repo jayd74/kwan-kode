@@ -1,5 +1,5 @@
 import React from 'react'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { getPrimaryID, isSpouse, getSecondaryID, findPerson, getSiblingIDs, findSiblings } from '../../helpers/helpers'
 
 const Family = ({ id, familyData}) => {
@@ -25,17 +25,17 @@ const Family = ({ id, familyData}) => {
     Family members:
     {family.map(member => {
       const { id, relation, name, siblings, children } = member
+      const hasSiblings = !isEmpty(siblings)
+      const hasChildren = !isEmpty(children)
 
-      const showSiblings = siblings ? <>
-        <p>Siblings: </p>
+      const siblingsList = hasSiblings ? <>
         {siblings.map(sibling => {
           const sib = get(sibling, '[0]')
           return <p key={sib.id}>{sib.name}</p>
         })}
       </> : null
 
-      const showChildren = children ? <>
-        <p>Children: </p>
+      const childrenList = hasChildren ? <>
         {children.map(sibling => {
           const sib = get(sibling, '[0]')
           return <p key={sib.id}>{sib.name}</p>
@@ -44,8 +44,8 @@ const Family = ({ id, familyData}) => {
 
       return <div key={id}>
         {relation} of {name}
-        {showSiblings}
-        {showChildren}
+        {siblingsList}
+        {childrenList}
       </div>
     })}
   </>
